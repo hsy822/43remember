@@ -97,8 +97,8 @@ File: README
 Clone this repository.
 
 ```
-$ git clone https://github.com/hsy822/remember43.git
-$ cd remember43/
+$ git clone https://github.com/hsy822/43remember.git
+$ cd 43remember/
 ```
 
 Go to the repository folder.
