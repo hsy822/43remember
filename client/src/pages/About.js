@@ -12,7 +12,7 @@ class About extends Component {
         <iframe
           style={style}
           title="docs"
-          src="https://docs.google.com/document/d/e/2PACX-1vRkOkeWq868SaTdPdHzgccz_xoNziM8sLSV3OTA5Mtvb3nVO_r4r56b3QtFtwR_OwS8l7010lwkApjg/pub?embedded=true"
+          src="https://docs.google.com/document/d/e/2PACX-1vSR9CMokWoRffjp1D8MV0q-85jM1Lw3l_-QP_cxiUEinwRsRYgMk7WWk_UCuvh51udFVYZ0UNVDc2GS/pub?embedded=true"
         />
       </div>
     );
