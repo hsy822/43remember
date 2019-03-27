@@ -7,7 +7,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Home, Admin, About } from "./pages";
-import Background from "./img/image1.jpg";
+import Background from "./img/image3.jpg";
 
 function TabContainer(props) {
   return (
@@ -22,8 +22,9 @@ TabContainer.propTypes = {
 };
 
 let style = {
-  background: `url(${Background})`,
-  // background: `url(${Background}) no-repeat center center`,
+  // background: `url(${Background})`,
+  background: `url(${Background}) no-repeat center center`,
+  backgroundSize: "cover",
   width: "100%",
   height: "100%",
   position: "absolute"
