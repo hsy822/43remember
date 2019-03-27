@@ -92,7 +92,7 @@ File: README
 
 - UI : material-ui
 
-- 현재 https://hsy822.github.io/remember43 링크를 통해 접근 -> 도메인 구입 예정
+- http://remember43.org
 
 Clone this repository.
 
