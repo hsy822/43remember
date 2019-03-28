@@ -31,6 +31,16 @@ function ImageAvatars(props) {
         src="img/soto.PNG"
         className={classes.bigAvatar}
       />
+      <Avatar
+        alt="Bomsol Kim"
+        src="img/bomsol.png"
+        className={classes.bigAvatar}
+      />
+      <Avatar
+        alt="Sooyoung Hyun"
+        src="img/soo.jpg"
+        className={classes.bigAvatar}
+      />
     </Grid>
   );
 }

@@ -21,7 +21,13 @@ function PaperSheet(props) {
   return (
     <div>
       <Paper className={classes.root} elevation={1}>
-        <ImageAvatars />
+        {props.contributor ? (
+          <ImageAvatars />
+        ) : (
+          <p style={{ textAlign: "center" }}>
+            후원 주소 : 0x724cA922Fa3F3fDD640e6d875200D0e77831E52F
+          </p>
+        )}
       </Paper>
     </div>
   );

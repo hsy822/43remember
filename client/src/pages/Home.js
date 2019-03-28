@@ -7,6 +7,7 @@ class Home extends Component {
     return (
       <div>
         <CustomPaginationActionsTable />
+        <PaperSheet contributor={true} />
         <PaperSheet />
       </div>
     );
