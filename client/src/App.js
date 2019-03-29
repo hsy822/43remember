@@ -6,7 +6,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Home, Admin, About } from "./pages";
+import { Home, Admin, About, Excel } from "./pages";
 import Background from "./img/image3.jpg";
 
 function TabContainer(props) {
@@ -58,11 +58,13 @@ class App extends Component {
               <Tab label="희생자 명단" component={Link} to="/" />
               <Tab label="관리" component={Link} to="/admin" />
               <Tab label="About" component={Link} to="/about" />
+              <Tab label="Excel" component={Link} to="/excel" />
             </Tabs>
           </AppBar>
           <Route exact path="/" component={Home} />
           <Route path="/admin" component={Admin} />
           <Route path="/about" component={About} />
+          <Route path="/excel" component={Excel} />
         </Router>
       </div>
     );

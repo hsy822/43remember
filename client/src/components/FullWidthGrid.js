@@ -47,11 +47,15 @@ function FullWidthGrid(props) {
             contract={props.contract}
             coinbase={props.coinbase}
           />
-          <FormContributor
-            web3={props.web3}
-            contract={props.contract}
-            coinbase={props.coinbase}
-          />
+          {props.coinbase === "0x724cA922Fa3F3fDD640e6d875200D0e77831E52F" ? (
+            <FormContributor
+              web3={props.web3}
+              contract={props.contract}
+              coinbase={props.coinbase}
+            />
+          ) : (
+            false
+          )}
         </Grid>
       </Grid>
     </div>

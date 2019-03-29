@@ -25,7 +25,7 @@ function PaperSheet(props) {
           <ImageAvatars />
         ) : (
           <p style={{ textAlign: "center" }}>
-            후원 주소 : 0x724cA922Fa3F3fDD640e6d875200D0e77831E52F
+            후원 주소 : 0x724cA922Fa3F3fDD640e6d875200D0e77831E52F (ETH)
           </p>
         )}
       </Paper>
