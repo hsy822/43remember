@@ -41,6 +41,16 @@ function ImageAvatars(props) {
         src="img/soo.jpg"
         className={classes.bigAvatar}
       />
+      <Avatar
+        alt="Sunggil Lee"
+        src="img/sunggil.jpg"
+        className={classes.bigAvatar}
+      />
+      <Avatar
+        alt="Sunghan Yang"
+        src="img/eden.jpg"
+        className={classes.bigAvatar}
+      />
     </Grid>
   );
 }
