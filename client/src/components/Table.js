@@ -138,7 +138,7 @@ class CustomPaginationActionsTable extends React.Component {
       // Get the contract instance.
       const instance = new web3.eth.Contract(
         Remember43Contract.abi,
-        "0x54381fd01070284448f24964a36569eb1f3d52b3"
+        "0x209c860cf96cd3968b6d0aaab1d5e13c62632bf5"
       );
 
       console.log(instance);
