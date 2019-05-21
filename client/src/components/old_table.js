@@ -13,7 +13,6 @@ import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
-import CirculaIndeterminate from "./Progress";
 import Remember43Contract from "../contracts/Remember43.json";
 import getWeb3List from "../utils/getWeb3List";
 const actionsStyles = theme => ({
@@ -103,6 +102,12 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, {
   withTheme: true
 })(TablePaginationActions);
 
+let counter = 0;
+function createData(idx, name, addr) {
+  counter += 1;
+  return { id: counter, idx, name, addr };
+}
+
 const styles = theme => ({
   root: {
     width: "800px",
@@ -122,9 +127,7 @@ class CustomPaginationActionsTable extends React.Component {
     rows: [],
     page: 0,
     rowsPerPage: 5,
-    contract: "",
-    victimsCount: 0,
-    isLoading: true
+    contract: ""
   };
 
   componentDidMount = async () => {
@@ -151,56 +154,23 @@ class CustomPaginationActionsTable extends React.Component {
     }
   };
 
-  getList = async page => {
-    this.setState({ isLoading: true });
+  getList = async () => {
     const contract = this.state.contract;
     let count = await contract.methods.victimsCount().call();
 
     let victims = [];
 
-    // for (let i = 1; i <= count; i++) {
-    //   let victim = await contract.methods.getVictim(i).call();
-    //   victims.push(createData(victim[0], victim[1], victim[2]));
-    // }
-    console.log(page);
-    if (!page) {
-      for (let i = Number(count); i > count - this.state.rowsPerPage; i--) {
-        let victim = await contract.methods.getVictim(i).call();
-        victims.push({
-          idx: victim[0],
-          name: victim[1],
-          addr: victim[2]
-        });
-      }
-      this.setState({
-        rows: victims,
-        victimsCount: count,
-        page: 0,
-        isLoading: false
-      });
-      console.log(victims);
-    } else {
-      for (
-        let i = count - page * this.state.rowsPerPage;
-        i > count - page * this.state.rowsPerPage - this.state.rowsPerPage;
-        i--
-      ) {
-        let victim = await contract.methods.getVictim(i).call();
-        if (victim[0] < 15000 && victim[0] > 0) {
-          victims.push({
-            idx: victim[0],
-            name: victim[1],
-            addr: victim[2]
-          });
-        }
-      }
-      this.setState({ rows: victims, page, isLoading: false });
-      console.log(victims);
+    for (let i = 1; i <= count; i++) {
+      let victim = await contract.methods.getVictim(i).call();
+      victims.push(createData(victim[0], victim[1], victim[2]));
     }
+
+    this.setState({ rows: victims.reverse() });
+    console.log(victims);
   };
 
   handleChangePage = (event, page) => {
-    this.getList(page);
+    this.setState({ page });
   };
 
   handleChangeRowsPerPage = event => {
@@ -210,43 +180,44 @@ class CustomPaginationActionsTable extends React.Component {
   render() {
     const { classes } = this.props;
     const { rows, rowsPerPage, page } = this.state;
+    const emptyRows =
+      rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
           <Table className={classes.table}>
-            {this.state.isLoading ? (
-              <TableBody style={{ textAlign: "center" }}>
-                <CirculaIndeterminate />
-              </TableBody>
-            ) : (
-              <TableBody>
-                {rows.map(row => {
-                  return (
-                    <TableRow key={row.idx}>
-                      <TableCell component="th" scope="row">
-                        {row.idx}
-                      </TableCell>
-                      <TableCell align="right">{row.name}</TableCell>
-                      <TableCell align="right">{row.addr}</TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            )}
-
+            <TableBody>
+              {rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map(row => (
+                  <TableRow key={row.id}>
+                    <TableCell component="th" scope="row">
+                      {row.idx}
+                    </TableCell>
+                    <TableCell align="right">{row.name}</TableCell>
+                    <TableCell align="right">{row.addr}</TableCell>
+                  </TableRow>
+                ))}
+              {emptyRows > 0 && (
+                <TableRow style={{ height: 48 * emptyRows }}>
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
             <TableFooter>
               <TableRow>
                 <TablePagination
-                  rowsPerPageOptions={[5]}
+                  rowsPerPageOptions={[5, 10, 25]}
                   colSpan={3}
-                  count={Number(this.state.victimsCount)}
+                  count={rows.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   SelectProps={{
                     native: true
                   }}
                   onChangePage={this.handleChangePage}
+                  onChangeRowsPerPage={this.handleChangeRowsPerPage}
                   ActionsComponent={TablePaginationActionsWrapped}
                 />
               </TableRow>
