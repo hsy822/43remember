@@ -51,6 +51,16 @@ function ImageAvatars(props) {
         src="img/eden.jpg"
         className={classes.bigAvatar}
       />
+      <Avatar
+        alt="Nayeon Go"
+        src="img/sam1.jpg"
+        className={classes.bigAvatar}
+      />
+      <Avatar
+        alt="Seoin Hong"
+        src="img/sam2.jpeg"
+        className={classes.bigAvatar}
+      />
     </Grid>
   );
 }
