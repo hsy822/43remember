@@ -61,6 +61,11 @@ function ImageAvatars(props) {
         src="img/sam2.jpeg"
         className={classes.bigAvatar}
       />
+      <Avatar
+        alt="Yongsuk Moon"
+        src="img/mys.PNG"
+        className={classes.bigAvatar}
+      />
     </Grid>
   );
 }
