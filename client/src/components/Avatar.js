@@ -66,6 +66,11 @@ function ImageAvatars(props) {
         src="img/mys.PNG"
         className={classes.bigAvatar}
       />
+      <Avatar
+        alt="anonymous"
+        src="img/letsrun.jpg"
+        className={classes.bigAvatar}
+      />
     </Grid>
   );
 }
